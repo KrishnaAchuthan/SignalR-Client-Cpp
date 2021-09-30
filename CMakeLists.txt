@@ -8,7 +8,7 @@ project (microsoft-signalr)
 
 include(CTest)
 
-set(WERROR true CACHE BOOL "Enable warnings as errors.")
+# set(WERROR true CACHE BOOL "Enable warnings as errors.")
 set(WALL true CACHE BOOL "Enable all warnings.")
 set(INCLUDE_JSONCPP true CACHE BOOL "Include jsoncpp source")
 set(BUILD_SHARED_LIBS ON CACHE BOOL "Build shared libraries")
@@ -26,6 +26,12 @@ endif()
 if(INJECT_HEADER_AFTER_STDAFX)
   string(APPEND EXTRA_FLAGS " -DINJECT_HEADER_AFTER_STDAFX=${INJECT_HEADER_AFTER_STDAFX}")
 endif()
+
+set (CMAKE_C_STANDARD 17)
+set (CMAKE_CXX_STANDARD 20)
+set (CMAKE_C_COMPILER /usr/bin/clang-12 CACHE PATH "")
+set (CMAKE_CXX_COMPILER /usr/bin/clang++-12 CACHE PATH "")
+set (CMAKE_LINKER /usr/bin/lld CACHE PATH "")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${EXTRA_FLAGS}")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${CMAKE_LDFLAGS}")
